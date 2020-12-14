@@ -1,0 +1,541 @@
+﻿
+@{
+    ViewBag.Title = "DataItem";
+}<link href="~/Content/StyleSheet5.css" rel="stylesheet">
+<style>
+    .wrapper .form .inputfield label{
+   width: 237px;
+   color: #757575;
+   margin-right: 10px;
+  font-size: 14px;
+}
+    .wrapper{
+  max-width: 500px;
+  width: 100%;
+  background-color:	rgb(255, 255, 204);
+  margin: 20px auto;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.125);
+  padding: 30px;
+}
+    body{
+
+  background:url(/Images/haa6.jpg) fixed;
+  height: 0%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <form>
+        <div class="wrapper">
+            <div class="title">
+                House Information
+            </div>
+            <div class="form">
+                <div class="inputfield">
+                    <label> Username</label>
+                    <input type="text" id="txtname" disabled class="input" value="@Session["Username"]">
+                </div>
+                <div id="sectiontohide1" class="alert-warning" style="display:none;color:indianred">Please input your Phone Number.</div>
+                <div class="inputfield">
+                    <label> Phone Number</label>
+                    <input type="number" min="00000000000000000" id="txtnum" onchange="oo()" class="input" autocomplete="off" value="" required />
+                </div>
+                <div id="sectiontohide2" class="alert-warning" style="display:none;color:indianred">Please select your Property Type.</div>
+                <div class="inputfield">
+                    <label>Property Type</label>
+                    <div class="custom_select">
+                        <select id="type" class="form-control" name="" onchange="oo()" required>
+                            <option value="" selected hidden>-- Select Property --</option>
+                            <option value="Apartment">Apartment</option>
+                            <option value="Commercial">Commercial</option>
+                            <option value="House">House</option>
+                            <option value="Land">Land</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="sectiontohide3" class="alert-warning" style="display:none;color:indianred">Please input your Location.</div>
+                <div class="inputfield">
+                    <label>Location</label>
+                    <input type="text" id="txtlokasi" autocomplete="off"  onchange="oo()" class="input" required />
+                </div>
+                <div id="sectiontohide4" class="alert-warning" style="display:none;color:indianred">Please select your Offer Type.</div>
+                <div class="inputfield">
+                    <label>Offer Type</label>
+                    <div class="custom_select">
+                        <select id="type1" class="form-control" name="" onchange="oo()" required>
+                            <option value="" selected hidden>-- Select Offer type --</option>
+                            <option value="For Rent">For Rent</option>
+                            <option value="For Sale">For Sale</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="sectiontohide5" class="alert-warning" style="display:none;color:indianred">Please input your Price.</div>
+                <div class="inputfield">
+                    <label>Price</label>
+                    <input type="number" id="harga" placeholder="Rp." autocomplete="off" onchange="oo()" class="input" required />
+                </div>
+                <div id="sectiontohide6" class="alert-warning" style="display:none;color:indianred">Please input your House Length.</div>
+                <div class="inputfield">
+                    <label>House Length</label>
+                    <input type="number" id="txtprice" onkeyup="myFunction()" autocomplete="off" onchange="oo()" placeholder="Meter(m)" class="input" required />
+                </div>
+                <div id="sectiontohide7" class="alert-warning" style="display:none;color:indianred">Please input your House width.</div>
+                <div class="inputfield">
+                    <label>House width</label>
+                    <input type="number" id="txtqty" onkeyup="myFunction()" autocomplete="off" onchange="oo()" placeholder="Meter(m)" class="input" required />
+                </div>
+                <div class="inputfield">
+                    <label>House Area</label>
+                    <input type="number" disabled id="txttotal" autocomplete="off" onchange="oo()" placeholder="(m2)" class="input">
+                </div>
+                <div id="sectiontohide8" class="alert-warning" style="display:none;color:indianred">Please input your Address.</div>
+                <div class="inputfield">
+                    <label>Address</label>
+                    <textarea class="textarea" onchange="oo()" id="txtadd" autocomplete="off"></textarea>
+                </div>
+                <div class="inputfield">
+                    <label>Description</label>
+                    <textarea class="textarea" id="txtdes" autocomplete="off"></textarea>
+                </div>
+                <div class="inputfield">
+
+                    <label>Image</label>
+                    <div class="row">
+                        <img id="image-preview" width="300" alt="image preview" />
+                        <br />
+                        <input type="file" id="image-source" onchange="previewImage();" />
+                    </div>
+                </div>
+                <input type="text" style="display:none" name="" id="txtadd1" required>
+                @*<div class="inputfield terms">
+                        <label class="check">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                        <p>Agreed to terms and conditions</p>
+                    </div>*@
+                <br />
+                <div class="inputfield">
+                    <button type="submit" id="btnsubmit" class="btn" onclick="save()">Save Data</button>
+                    @*<input type="submit" value="Register" class="btn">*@
+                </div>
+                <div class="inputfield">
+                    <button type="button" class="btn" onclick="back()">Back</button>
+                    @*<input type="submit" value="Register" class="btn">*@
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    var edit = false;
+    function back() {
+        var url = new URLSearchParams(window.location.search);
+        var search2 = url.has('history');
+        var tes = document.getElementById("type1").value;
+
+        if (search2 == true) {
+            window.location.href = "/fItem/EditItem"
+        }
+        else if (search2 != true) {
+            if (tes == "For Sale") {
+                window.location.href = "/fItem/Indexitem"
+            }
+            else {
+                window.location.href = "/fItem/Indexitem2"
+            }
+        }
+    }
+    function pswedit() {
+        debugger
+        var checkvalidation = false;
+        var Phone = document.getElementById("txtnum").value;
+
+        if (Phone != "") {
+            document.getElementById("sectiontohide1").style.display = "none";
+        }
+        else if (Phone == "") {
+            checkvalidation = true;
+            document.getElementById("sectiontohide1").style.display = "block";
+        }
+
+        var prop = document.getElementById("type").value;
+        if (prop != "") {
+            document.getElementById("sectiontohide2").style.display = "none";
+        }
+        else if (prop == "") {
+            checkvalidation = true;
+            document.getElementById("sectiontohide2").style.display = "block";
+        }
+        var lokasi = document.getElementById("txtlokasi").value;
+        if (lokasi != "") {
+            document.getElementById("sectiontohide3").style.display = "none";
+        }
+        else if (lokasi == "") {
+            checkvalidation = true;
+            document.getElementById("sectiontohide3").style.display = "block";
+        }
+        var pen = document.getElementById("type1").value;
+        if (pen != "") {
+            document.getElementById("sectiontohide4").style.display = "none";
+        }
+        else if (pen == "") {
+            checkvalidation = true;
+            document.getElementById("sectiontohide4").style.display = "block";
+        }
+        var Harga = document.getElementById("harga").value;
+        if (Harga != "") {
+            document.getElementById("sectiontohide5").style.display = "none";
+        }
+        else if (Harga == "") {
+            checkvalidation = true;
+            document.getElementById("sectiontohide5").style.display = "block";
+        }
+        var panjang = document.getElementById("txtprice").value;
+        if (panjang != "") {
+            document.getElementById("sectiontohide6").style.display = "none";
+        }
+        else if (panjang == "") {
+            checkvalidation = true;
+            document.getElementById("sectiontohide6").style.display = "block";
+        }
+        var Lebar = document.getElementById("txtqty").value;
+        if (Lebar != "") {
+            document.getElementById("sectiontohide7").style.display = "none";
+        }
+        else if (Lebar == "") {
+            checkvalidation = true;
+            document.getElementById("sectiontohide7").style.display = "block";
+        }
+        var address = document.getElementById("txtadd").value;
+        if (address != "") {
+            document.getElementById("sectiontohide8").style.display = "none";
+        }
+        else if (address == "") {
+            checkvalidation = true;
+            document.getElementById("sectiontohide8").style.display = "block";
+        }
+
+        return checkvalidation;
+    }
+
+    function oo() {
+        var Phone = document.getElementById("txtnum").value;
+        if (Phone != "") {
+            document.getElementById("sectiontohide1").style.display = "none";
+        }
+        var prop = document.getElementById("type").value;
+        if (prop != "") {
+            document.getElementById("sectiontohide2").style.display = "none";
+        }
+        var lokasi = document.getElementById("txtlokasi").value;
+        if (lokasi != "") {
+            document.getElementById("sectiontohide3").style.display = "none";
+        }
+        var pen = document.getElementById("type1").value;
+        if (pen != "") {
+            document.getElementById("sectiontohide4").style.display = "none";
+        }
+        var Harga = document.getElementById("harga").value;
+        if (Harga != "") {
+            document.getElementById("sectiontohide5").style.display = "none";
+        }
+        var panjang = document.getElementById("txtprice").value;
+        if (panjang != "") {
+            document.getElementById("sectiontohide6").style.display = "none";
+        }
+        var lebar = document.getElementById("txtqty").value;
+        if (lebar != "") {
+            document.getElementById("sectiontohide7").style.display = "none";
+        }
+        var address = document.getElementById("txtadd").value;
+        if (address != "") {
+            document.getElementById("sectiontohide8").style.display = "none";
+        }
+    }
+
+    function myFunction() {
+        var price = document.getElementById("txtprice").value;
+        var qty = document.getElementById("txtqty").value;
+        var total = 0
+
+
+        var total = price * qty
+        document.getElementById("txttotal").value = total;
+    }
+    function previewImage() {
+        document.getElementById("image-preview").style.display = "block";
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("image-source").files[0]);
+
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("image-preview").src = oFREvent.target.result;
+        };
+    };
+
+    function save() {
+        var file = $("#image-source").get(0).files;
+        var Address = $("#txtadd").val();
+        var TipePenawaran = $("#type1").val();
+        var data = new FormData;
+        var url1 = "/fItem/InputImage";
+        var imagepath = "";
+        data.append("file", file[0]);
+        data.append("Address", Address);
+        data.append("TipePenawaran", TipePenawaran);
+        var foto = document.getElementById("image-source").value;
+
+        if (foto != "" && pswedit() != true) {
+            $.ajax({
+                url: url1,
+                data: data,
+                type: "POST",
+                contentType: false,
+                processData: false,
+                async: false,
+                success: function (response) {
+                    imagepath = response;
+                }
+            });
+
+            var Username = $("#txtname").val();
+            var PhoneNumber = $("#txtnum").val();
+            var TipeProperti = $("#type").val();
+            var lokasi = $("#txtlokasi").val();
+            var Image = $("#image-source").val();
+            var TipePenawaran = $("#type1").val();
+            var Harga = $("#harga").val();
+            var PanjangRumah = $("#txtprice").val();
+            var LebarRumah = $("#txtqty").val();
+            var LuasRumah = $("#txttotal").val();
+            var Address = $("#txtadd").val();
+            var Deskripsi = $("#txtdes").val();
+            var url = "/fItem/SaveData";
+            var url3 = new URLSearchParams(window.location.search);
+            var Id = url3.get('Id');
+            var search2 = url3.has('history');
+            var tes = document.getElementById("type1").value;
+
+
+            $.ajax({
+                url: url,
+                data: {
+                   Id:Id, Username: Username, PhoneNumber: PhoneNumber, TipeProperti: TipeProperti, lokasi: lokasi, Image: imagepath, TipePenawaran: TipePenawaran, Harga: Harga, edit: edit, PanjangRumah: PanjangRumah
+                , LebarRumah: LebarRumah, LuasRumah: LuasRumah, Address:Address, Deskripsi:Deskripsi},
+                type: "GET",
+                success: function (data) {
+                    if (data.success == true) {
+                        alert(data.message)
+                        if (search2 == true) {
+                            window.location.href = "/fItem/EditItem"
+                        }
+                        else if (search2 != true) {
+                            if (tes == "For Sale") {
+                                window.location.href = "/fItem/Indexitem"
+                            }
+                            else {
+                                window.location.href = "/fItem/Indexitem2"
+                            }
+                        }
+                       
+                    }
+                    else {
+                        alert(data.message)
+                    }
+                }
+            });
+        }
+
+        else if (pswedit() != true)
+        {
+            var Username = $("#txtname").val();
+            var PhoneNumber = $("#txtnum").val();
+            var TipeProperti = $("#type").val();
+            var lokasi = $("#txtlokasi").val();
+            var Image = $("#image-source").val();
+            var TipePenawaran = $("#type1").val();
+            var Harga = $("#harga").val();
+            var PanjangRumah = $("#txtprice").val();
+            var LebarRumah = $("#txtqty").val();
+            var LuasRumah = $("#txttotal").val();
+            var Address = $("#txtadd").val();
+            var Deskripsi = $("#txtdes").val();
+            var url = "/fItem/SaveData";
+            var picture = $("#txtadd1").val();
+            var url3 = new URLSearchParams(window.location.search);
+            var Id = url3.get('Id');
+            var search2 = url3.has('history');
+            var tes = document.getElementById("type1").value;
+
+            $.ajax({
+                url: url,
+                data: {
+                    Id: Id, Username: Username, PhoneNumber: PhoneNumber, TipeProperti: TipeProperti, lokasi: lokasi, Image: picture, TipePenawaran: TipePenawaran, Harga: Harga, edit: edit, PanjangRumah: PanjangRumah
+                , LebarRumah: LebarRumah, LuasRumah: LuasRumah, Address: Address, Deskripsi: Deskripsi
+                },
+                type: "GET",
+                success: function (data) {
+                    if (data.success == true) {
+                        alert(data.message)
+                        if (search2 == true) {
+                            window.location.href = "/fItem/EditItem"
+                        }
+                        else if (search2 != true) {
+                            if (tes == "For Sale") {
+                                window.location.href = "/fItem/Indexitem"
+                            }
+                            else {
+                                window.location.href = "/fItem/Indexitem2"
+                            }
+                        }
+
+                    }
+                    else {
+                        alert(data.message)
+                    }
+                }
+            });
+        }
+
+    }
+
+    $(document).ready(function () {
+        debugger
+        var url = new URLSearchParams(window.location.search);
+        var search1 = url.has('Id');
+        var search2 = url.has('history');
+        var Id2 = url.get('history');
+        var file = $("#image-source").get(0).files;
+        var Username = $("#txtname").val();
+        var Harga = $("harga").val();
+        var data = new FormData;
+        var Id = "";
+        var imagepath = "";
+        data.append("file", file[0]);
+        data.append("username", Username);
+        if (search1 == true) {
+            $("#txtname").attr("disabled", true);
+            var Id = url.get('Id');
+            $.ajax({
+                url: "/fItem/Getdetail",
+                data: {Id : Id },
+                type: "POST",
+                success: function (data) {
+                    console.log(data);
+                    //var parseData = String(data.data);
+                    $('#txtname').val(data.data[0].UserName);
+                    $('#txtlokasi').val(data.data[0].Lokasi);
+                    $('#image-preview').attr('src', data.data[0].Image.substring(1));
+                    $('#txtadd1').val(data.data[0].Image)
+                    $('#type').val(data.data[0].TipeProperti)
+                    $('#type1').val(data.data[0].TipePenawaran)
+                    $('#harga').val(data.data[0].Harga)
+                    $('#txtprice').val(data.data[0].PanjangRumah)
+                    $('#txtqty').val(data.data[0].LebarRumah)
+                    $('#txttotal').val(data.data[0].LuasRumah)
+                    $('#txtdes').val(data.data[0].Deskripsi)
+                    $("#txtnum").val(data.data[0].PhoneNumber);
+                    $('#txtadd').val(data.data[0].Address);
+                    if (data.success) {
+                        console.log(data);
+                        if (search2 != true) {
+                            $("#txtqty").attr("disabled", true);
+                            $("#txtadd").attr("disabled", true);
+                            $("#txtlokasi").attr("disabled", true);
+                            $("#image-preview").attr("disabled", true);
+                            $("#type").attr("disabled", true);
+                            $("#type1").attr("disabled", true);
+                            $("#harga").attr("disabled", true);
+                            $("#btnsubmit").hide();
+                            $("#txtprice").attr("disabled", true);
+                            $("#txtqty").attr("disabled", true);
+                            $("#txtnum").attr("disabled", true);
+                            $("#txtdes").attr("disabled", true);
+                            $("#image-source").attr("disabled", true);
+                        }
+                        else {
+                            edit = true;
+                        }
+
+                        //dataTable.clear().draw();
+                        //dataTable.rows.add(data.data).draw();
+                    }
+                },
+                error: function (xhr) {
+                    alert('error');
+                }
+            });
+
+        }
+        else {
+
+        }
+    });
+
+    //$(document).ready(function () {
+    //    debugger
+    //    var url = new URLSearchParams(window.location.search);
+    //    var search1 = url.has('Id');
+    //    var search2 = url.has('history');
+    //    var file = $("#image-source").get(0).files;
+    //    var Username = $("#txtname").val();
+    //    var Harga = $("harga").val();
+    //    var data = new FormData;
+    //    var Id = "";
+    //    var history = "";
+    //    var imagepath = "";
+    //    data.append("file", file[0]);
+    //    data.append("username", Username);
+    //    if (search1 && search2 == true) {
+    //        $("#txtname").attr("disabled", true);
+    //        var Id = url.get('Id');
+    //        $.ajax({
+    //            url: "/fItem/Editdetail",
+    //            data: { Id: Id },
+    //            type: "POST",
+    //            success: function (data) {
+    //                console.log(data);
+    //                //var parseData = String(data.data);
+    //                $('#txtname').val(data.data[0].UserName);
+    //                $('#txtlokasi').val(data.data[0].Lokasi);
+    //                $('#image-preview').attr('src', data.data[0].Image.substring(1));
+    //                $('#txtadd1').val(data.data[0].Image)
+    //                $('#type').val(data.data[0].TipeProperti)
+    //                $('#type1').val(data.data[0].TipePenawaran)
+    //                $('#harga').val(data.data[0].Harga)
+    //                $('#txtprice').val(data.data[0].PanjangRumah)
+    //                $('#txtqty').val(data.data[0].LebarRumah)
+    //                $('#txttotal').val(data.data[0].LuasRumah)
+    //                $('#txtdes').val(data.data[0].Deskripsi)
+    //                $("#txtnum").val(data.data[0].PhoneNumber);
+    //                $('#txtadd').val(data.data[0].Address);
+    //                if (data.success) {
+    //                    console.log(data);
+
+    //                    //dataTable.clear().draw();
+    //                    //dataTable.rows.add(data.data).draw();
+    //                }
+    //            },
+    //            error: function (xhr) {
+    //                alert('error');
+    //            }
+    //        });
+
+    //    }
+    //    else {
+
+    //    }
+    //});
+</script>

@@ -1,0 +1,33 @@
+Query Database sql server
+
+CREATE DATABASE ToM;
+
+CREATE TABLE Item (
+	 Id int NOT NULL IDENTITY(1,1) PRIMARY KEY ,
+    UserName nvarchar(50) NOT NULL,
+    TipeProperti nvarchar(50) NOT NULL,
+    Lokasi nvarchar(50) NOT NULL,
+	TipePenawaran nvarchar(50) NOT NULL,
+	Harga nvarchar(50),
+	PanjangRumah int NOT NULL,
+	LebarRumah int NOT NULL,
+	LuasRumah int NOT NULL,
+    Address nvarchar(200),
+    Deskripsi nvarchar(300),
+	Image nvarchar(1000),
+	CreatedDate datetime,
+	PhoneNumber nvarchar(50),
+	UpdateDate datetime,
+);
+
+CREATE TABLE [User] (
+    UserName nvarchar(50) NOT NULL,
+    Password nvarchar(100) NOT NULL,
+    Email nvarchar(50) NOT NULL,
+    Address nvarchar(200) NOT NULL,
+	PhoneNumber nvarchar(50),
+	Gender nvarchar(50) NOT NULL,
+	CreatedDate datetime,
+	UpdateDate datetime,
+	DateofBirth nvarchar(50)
+);

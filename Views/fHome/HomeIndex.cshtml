@@ -1,0 +1,310 @@
+﻿
+@{
+    ViewBag.Title = "HomeIndex";
+}
+<style>
+    body {
+   background-image: linear-gradient(to top right, #ffff99 0%, #ffffff 100%);
+  background-repeat: no-repeat;
+}
+
+.mySlides {display:none;}
+
+.jumbotron{
+      background-image: linear-gradient(to top right, #ffff99 0%, #ffffff 100%);
+}
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: red; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+#ui {
+  color: black;
+  text-shadow: 1px 1px 2px white, 0 0 25px yellow, 0 0 5px yellow;
+}
+
+</style>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
+</head>
+<body>
+
+    <!-- Navbar (sit on top) -->
+    @*<div class="w3-top">
+        <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+            <a href="#home" class="w3-bar-item w3-button"><b>BR</b> Architects</a>
+             Float links to the right. Hide them on small screens 
+            <div class="w3-right w3-hide-small">
+                <a href="#projects" class="w3-bar-item w3-button">Projects</a>
+                <a href="#about" class="w3-bar-item w3-button">About</a>
+                <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+            </div>
+        </div>
+    </div>*@
+
+    <!-- Header -->
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Welcome to ToM!</h1>
+            <p>We’ll help you find a place you’ll love.</p>
+        </div>
+    </div>
+    <header class="w3-display-container w3-content w3-wide" style="max-width:1000px;" id="home">
+        <div class="w3-content w3-section" id="yow" style="max-width:600px">
+            <img class="mySlides" src="/Images/pp.jpg" style="width:100%">
+            <img class="mySlides" src="/Images/t16.jpg" style="width:100%">
+            <img class="mySlides" src="/Images/gg.jpg" style="width:100%">
+            <img class="mySlides" src="/Images/pl.jpg" style="width:100%">
+            <img class="mySlides" src="/Images/op.jpg" style="width:100%">
+            <img class="mySlides" src="/Images/main.jpg" style="width:100%">
+            <img class="mySlides" src="/Images/tes.jpg" style="width:100%">
+        </div>
+        <div class="w3-display-middle w3-margin-top w3-center">
+            <h1 id="ui" class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>ToM</b></span> <span class="w3-hide-small w3-text-light-grey">TeofMa</span></h1>
+        </div>
+    </header>
+
+    <!-- Page content -->
+    <div class="w3-content w3-padding" style="max-width:1564px">
+
+        <!-- Project Section -->
+        <div class="w3-container w3-padding-32" id="projects">
+            <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Reference</h3>
+        </div>
+
+        <div class="w3-row-padding">
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-black w3-padding">Summer House</div>
+                    <img src="/Images/t16.jpg" alt="House" style="width:99%;">
+                </div>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-black w3-padding">Brick House</div>
+                    <img src="/Images/op.jpg" alt="House" style="width:97%">
+                </div>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-black w3-padding">Renovated</div>
+                    <img src="/Images/t1.jpg" alt="House" style="width:100%">
+                </div>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-black w3-padding">Barn House</div>
+                    <img src="/Images/t9.jpg" alt="House" style="width:100%">
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-row-padding">
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-black w3-padding">Summer House</div>
+                    <img src="/Images/main.jpg" alt="House" style="width:99%">
+                </div>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-black w3-padding">Brick House</div>
+                    <img src="/Images/gg.jpg" alt="House" style="width:99%">
+                </div>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-black w3-padding">Renovated</div>
+                    <img src="/Images/t3.jpg" alt="House" style="width:99%">
+                </div>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-black w3-padding">Barn House</div>
+                    <img src="/Images/t4.jpg" alt="House" style="width:99%">
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="w3-container w3-padding-32" id="about">
+            <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+            <p>
+                In 2020, we set out to reinvent life’s most important transaction with a new, radically simple way to buy and sell your home. Our mission is to empower everyone with the freedom to move and give accuracy
+                information about sell and rent home.
+            </p>
+        </div>
+
+        <div class="w3-row-padding w3-grayscale">
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <img src="/Images/tevin2.jpg" alt="John" style="width:100%">
+                <h3>Tevin Lim</h3>
+                <p class="w3-opacity">CEO</p>
+                <p>Hello, my name is Tevin Lim. I'm from Batam and now I'm 18 years old. I also work as software engineer in PT.Celindo Pratama since this july 2020 and my favorite thing to do is hang out with my friends and learn something new.</p>
+                <p><button class="w3-button w3-light-grey w3-block" onclick="location.href='https://www.instagram.com/tevin_lim/';">Contact  <i class="fa fa-instagram" ></i></button></p>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <img src="/Images/maikel.jpg" alt="Jane" style="width:100%">
+                <h3>Micheal</h3>
+                <p class="w3-opacity">Commissioner</p>
+                <p>Hello my name is Micheal. I'm from Batam and currently im 20 years old and my hobby is to learn about money things and to learn something new about cryptocurrency.</p>
+                <br />
+                <p><button class="w3-button w3-light-grey w3-block" onclick="location.href='https://www.instagram.com/_michael.ang/';">Contact  <i class="fa fa-instagram"></i></button></p>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <img src="/Images/junaidi.jpg" alt="Mike" style="width:100%">
+                <h3>Junaidi</h3>
+                <p class="w3-opacity">Manager Operational</p>
+                <p>Hi, My name is Junaidi. I'm incharge of Manager Operational to operate this server. If there's an issue with the Project, I'm responsible for it.</p>
+                <br><br>
+                <p><button class="w3-button w3-light-grey w3-block" onclick="location.href='https://www.instagram.com/alwayzz_1/';">Contact  <i class="fa fa-instagram"></i></button></p>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <img src="/Images/mercy.jpg" alt="Dan" style="width:100%">
+                <h3>Mercylya</h3>
+                <p class="w3-opacity">Head store & Purchasing</p>
+                <p>Hello My name is Mercy from TanjungPinang, currently 17 years old. Work in PT. IMT Asia-Pasifik since august 2020. My hobby is read novel during free time.</p>
+                <br />
+                <p><button class="w3-button w3-light-grey w3-block" onclick="location.href='https://www.instagram.com/mercylya/';">Contact <i class="fa fa-instagram"></i></button></p>
+            </div>
+          
+        </div>
+        <div class="w3-row-padding w3-grayscale">
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <img src="/Images/putra.jpg" alt="Dan" style="width:100%">
+                <h3>Putra Agung Winata</h3>
+                <p class="w3-opacity">Sales Marketing</p>
+                <p>My name is Putra Agung Winata, i'm 18 years old. i work as a Accounting & Finance in PT Megavastech Pratama, and i like to explore all the new things.</p>
+                <br /><br/>
+                <p><button class="w3-button w3-light-grey w3-block" onclick="location.href='https://www.instagram.com/putrawinata10/';">Contact  <i class="fa fa-instagram"></i> </button></p>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <img src="/Images/ricky.jpg" alt="Dan" style="width:100%">
+                <h3>Ricky</h3>
+                <p class="w3-opacity">Accounting & Finance</p>
+                <p>Hello my name is Ricky. I'm from Tanjungpinang and currently im 17 years old and my hobby is to read english translated novel and to learn something new about technology.</p>
+                <br/>
+                <p><button class="w3-button w3-light-grey w3-block" onclick="location.href='https://www.instagram.com/ricky_tan0812/';">Contact  <i class="fa fa-instagram"></i></button></p>
+            </div> 
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <img src="/Images/fredian.jpg" alt="Dan" style="width:100%;height:255px">
+                <h3>Fredian Simanjuntak, S.Kom.</h3>
+                <p class="w3-opacity">Founder</p>
+                <p>Hello, I am a lecturer of programming engineering subject in Universitas International Batam and the founder of this website.                                            </p>
+                &nbsp;&nbsp; 
+                <p><button class="w3-button w3-light-grey w3-block" onclick="location.href='https://www.instagram.com/putrawinata10/';">Contact  <i class="fa fa-instagram"></i> </button></p>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <img src="/Images/deli.jpg" alt="Dan" style="width:100%;height:255px">
+                <h3>Deli, S.Kom., M.MSI.</h3>
+                <p class="w3-opacity">Founder</p>
+                <p>Hello, I am a lecturer of interaction design subject in Universitas International Batam and the founder of this website.                                            </p>
+                <br/> <br/>
+                <p><button class="w3-button w3-light-grey w3-block" onclick="location.href='https://www.instagram.com/putrawinata10/';">Contact  <i class="fa fa-instagram"></i> </button></p>
+            </div>
+            </div>
+        @*<div class="col-lg-5">
+            <form action="/action_page.php" target="_blank">
+                <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+                <input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email">
+                <input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required name="Subject">
+                <input class="w3-input w3-section w3-border" type="text" placeholder="Comment" required name="Comment">
+                <button class="w3-button w3-black w3-section" type="submit">
+                    <i class="fa fa-paper-plane"></i> SEND MESSAGE
+                </button>
+            </form>
+        </div>*@
+            <!-- Contact Section -->
+            @*<div class="w3-container w3-padding-32" id="contact">
+                <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
+                <p>Lets get in touch and talk about your next project.</p>
+                <div class="col-lg-5">
+                    <form action="/action_page.php" target="_blank">
+                        <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+                        <input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email">
+                        <input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required name="Subject">
+                        <input class="w3-input w3-section w3-border" type="text" placeholder="Comment" required name="Comment">
+                        <button class="w3-button w3-black w3-section" type="submit">
+                            <i class="fa fa-paper-plane"></i> SEND MESSAGE
+                        </button>
+                    </form>
+                </div>
+            </div>*@
+
+            <!-- Image of location/map -->
+            @*<div class="w3-container">
+                <img src="/w3images/map.jpg" class="w3-image" style="width:100%">
+            </div>*@
+
+            <!-- End page content -->
+        </div>
+
+
+    <!-- Footer -->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <footer class="w3-center w3-black w3-padding-16">
+        <p>Welcome to ToM @*<a href="https://www.instagram.com/tevin_lim/" title="W3.CSS" target="_blank" class="w3-hover-text-green">tevin_lim</a>*@</p>
+    </footer>
+
+</body>
+</html>
+<script>
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) { myIndex = 1 }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 2000); // Change image every 2 seconds
+    }
+
+    mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+</script>
+
+

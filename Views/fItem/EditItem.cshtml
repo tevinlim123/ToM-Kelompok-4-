@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewBag.Title = "EditItem";
+}
+<style>
+    .container {
+    max-width: 1350px;
+  }
+    body{
+     background:url(/Images/haa8.jpg) fixed;
+  height: 0%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+     .dataTables_wrapper 
+     .dataTables_length, div.dataTables_wrapper 
+         div.dataTables_filter label, 
+         div.dataTables_wrapper div.dataTables_info {
+     color: black;
+     background-color: burlywood;
+}
+
+ </style>
+<body>
+    @*<a href="@Url.Action("Add")" class="btn btn-success" id="btnAddNew" style="display:none"><i class="fa fa-plus">Add New</i></a>*@
+    <h1 style="color:burlywood; display:none" id="label1">View Only</h1>
+    <a class="btn btn-success" style="margin-bottom:10px" id="btnaddnew" href="@Url.Action("DataItem","fitem")"><i class="fa fa-plus">Add New</i></a>
+    <table id="employeeTable10" class="display responsive nowrap" style="width:100%">
+        <thead style="background-color:burlywood;">
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Username</th>
+                <th>Property Type</th>
+                <th>Location</th>
+                <th>Address</th>
+                <th>Offer Type</th>
+                <th>Price</th>
+                <th>CreatedDate</th>
+                <th>UpdateDate</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+    </table>
+</body>
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <link href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script>
+
+        function LoadData() {
+            var User = "@Session["Username"]";
+            var val = {UserName:User}
+            $.ajax({
+                url: "/fItem/EditCall", // to get the right path to controller from TableRoutes of Asp.Net MVC
+                dataType: "json", //to work with json format
+                type: "GET", //to do a post request
+                data: val,
+                cache: false, //avoid caching results
+                //data: {}, // here you can pass arguments to your request if you need
+                success: function (data) {
+                    // data is your result from controller
+                    if (data.success) {
+
+                        console.log(data);
+
+                        dataTable.clear().draw();
+                        dataTable.rows.add(data.data).draw();
+                    }
+                },
+                error: function (xhr) {
+                    alert('error');
+                }
+            });
+        }
+        $(document).ready(function () {
+            debugger
+            dataTable = $("#employeeTable10").DataTable({
+                "columnDefs": [
+            {
+                "targets": [ 0 , 1] ,
+                "visible": false,
+                "searchable": false
+            }
+                ],
+                "columns": [
+                         { "data": "Id" },
+                         { "data": "Image" },
+                        { "data": "UserName" },
+                        { "data": "TipeProperti" },
+                        { "data": "Lokasi" },
+                         { "data": "Alamat" },
+                        { "data": "TipePenawaran" },
+                        { "data": "Harga" },
+                        { "data": "CreatedDate" },
+                        { "data": "UpdateDate" },
+                        {
+                            "data": "Username",
+                            "render": function (data) {
+                                return '<div class="btn-group">' +
+                                        '<button class="btn btn-success edit hasPopOver" data-toggle="popover" data-content="Edit"><i class="fa fa-edit"></i></button>' +
+                                        '<button class="btn btn-danger delete hasPopOver" data-toggle="popover" data-content="Delete"><i class="fa fa-trash"></i></button>' +
+                                       '</div>';
+                            },
+                            "className": "btn-action",
+                            "scrollX": true,
+                        }
+                ]
+
+            });
+            LoadData()
+        });
+
+
+        $('#employeeTable10').on('click', '.edit', function (data) {
+
+            var rowData = dataTable.row($(this).parents('tr')).data();
+            //$("#btnAddNew").css("display", "initial");
+            @*'@Url.Action("EditDetail", "fItem")*@
+            window.location.href = "/fItem/DataItem?Id=" + rowData.Id + "&&history=" + true + "";
+
+        });
+        debugger
+        $('#employeeTable10').on('click', '.delete', function (data) {
+            var rowData = dataTable.row($(this).parents('tr')).data();
+            //$("#data").val(obj.Id);
+            //$("#txtid").val(rowData.Id);
+            var result = confirm("Are you sure you want to delete?");
+            var url2 = "/fItem/DeleteImage";
+            if (result == true) {
+                location.href = '@Url.Action("Delete", "fItem")?Id=' + rowData.Id;
+                var Image = rowData.Image;
+                @*location.href = '@Url.Action("DeleteImage", "fUser")?UserName=' + rowData.UserName;*@
+                $.ajax({
+                    url: url2,
+                    data: { FilePath: Image},
+                    type: "GET",
+                    async: false,
+                    success: function (response) {
+                        Id = response;
+                        alert('Data delete successfully')
+                    }
+                });
+
+            } else {
+                return false;
+            }
+                  @*location.href = '@Url.Action("Delete", "Employee")?id=' + rowData.Id;*@
+
+
+                  }
+              );
+
+
+
+    </script>
+}
+

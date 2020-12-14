@@ -1,0 +1,193 @@
+﻿
+@{
+    ViewBag.Title = "UserEdit";
+}
+<style>
+   
+body {
+    padding-top: 0px;
+    padding-bottom: 20px;
+          background:url(/Images/haa7.jpg) fixed;
+  height: 0%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
+</style>
+<link href="~/Content/StyleSheet4.css" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="wrapper">
+        <h2>
+            Edit Profile
+        </h2>
+        <form action="#" method="POST">
+            <div class="input-group">
+                <div class="input-box">
+                    <label>UserName</label>
+                    <input type="text" id="txtname" autocomplete="off" placeholder="UserName" required class="name">
+                    <i class="fa fa-user"></i>
+                </div>
+                @*<div class="input-box">
+                    <h4>
+                        Gender
+                    </h4>
+                    <input type="radio" id="b1" name="gendar" value="Male" checked class="radio">
+                    <label for="b1">Male</label>
+                    <input type="radio" id="b2" name="gendar" value="Female" class="radio">
+                    <label for="b2">Female</label>
+
+                </div>*@
+            </div>
+            <div class="input-group">
+                <div class="input-box">
+                    <label>New Password</label>
+                    <input type="password" id="psw" autocomplete="off" placeholder="New Password" required class="name">
+                    <i class="fas fa-lock icon"></i>
+                </div>
+                <div class="input-box">
+                    <label>Confirm New Password</label>
+                    <input type="password" id="psw1" autocomplete="off" placeholder="Confirm New Password" required class="name">
+                    <i class="fas fa-lock icon"></i>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-box">
+                    <label>Email</label>
+                    <input type="email" id="email" autocomplete="off" placeholder="Email" required class="name">
+                    <i class="fa fa-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <label>Mobile No</label>
+                    <input type="tel" id="txtnum" autocomplete="off" placeholder="Phone No." required class="name">
+                    <i class="fa fa-phone"></i>
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="input-box">
+                    <label>Address</label>
+                    <input type="text" id="txtadd" autocomplete="off" placeholder="Address" required class="name">
+                    <i class="fa fa-home icon"></i>
+                </div>
+                <div class="input-box">
+                    <label>Date of Birth</label>
+                    <input type="text" id="txtdob" autocomplete="off" placeholder="DD/MM/YYYY" required class="name">
+                    <i class="fa fa-calendar"></i>
+                </div>
+
+            </div>
+
+            <div class="input-group">
+                <div class="input-box">
+                    <button type="button" class="registerbtn" id="btnsubmit" onclick="save();">Submit</button>
+                </div>
+                <div class="input-box">
+                    <button type="button" class="registerbtn" onclick="back()">Back</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    var edit = false;
+    function back() {
+        window.location.href = "/fHome/HomeIndex"
+    }
+   
+    function save() {
+        if (checkpsw() != true) {
+
+            var Username = $("#txtname").val();
+            var Password = $("#psw").val();
+            var Email = $("#email").val();
+            var Address = $("#txtadd").val();
+            var PhoneNumber = $("#txtnum").val();
+            var DateofBirth = $('#txtdob').val();
+            var url = "/fUser/SaveData";
+
+
+            $.ajax({
+                url: url,
+                data: { Username: Username, Password: Password, Address: Address, Email: Email, PhoneNumber: PhoneNumber, DateofBirth: DateofBirth, edit: edit },
+                type: "GET",
+                async: false,
+                success: function (data) {
+                    if (data.success == true) {
+                        alert(data.message)
+                        window.location.href = "/fHome/HomeIndex";
+                    }
+                    else {
+                        alert(data.message)
+                    }
+                }
+            });
+        }
+
+    }
+    function checkpsw() {
+        var checkpassword = false;
+        var Password = $("#psw").val();
+        var ConfirmPassword = $("#psw1").val();
+        if (Password != ConfirmPassword) {
+            alert('Please Confirm your password again')
+            checkpassword = true;
+        }
+        else {
+        }
+        return checkpassword;
+    }
+
+
+
+    $(document).ready(function () {
+        var url = new URLSearchParams(window.location.search);
+        var search1 = url.has('UserName');
+        var Username = $("#txtname").val();
+        if (search1 == true) {
+            edit = true;
+            $("#txtname").attr("disabled", true);
+            var UserName = url.get('UserName');
+            $.ajax({
+                url: "/fUser/Getdetail",
+                data: { UserName: UserName },
+                type: "POST",
+                success: function (data) {
+                    console.log(data);
+                    $('#txtname').val(UserName);
+                    $('#txtadd').val(data.data[0].Address);
+                    $('#email').val(data.data[0].Email);
+                    $('#txtnum').val(data.data[0].PhoneNumber)
+                    $('#txtdob').val(data.data[0].DateofBirth)
+                    if (data.success) {
+                        console.log(data);
+
+                    }
+                },
+                error: function (xhr) {
+                    alert('error');
+                }
+            });
+
+        }
+        else {
+
+        }
+    });
+
+
+
+</script>
+    

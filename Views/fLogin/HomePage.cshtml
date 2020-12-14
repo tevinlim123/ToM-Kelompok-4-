@@ -1,0 +1,173 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+@*<link href="~/Content/StyleSheet1.css" rel="stylesheet">*@
+<!DOCTYPE html>
+<html>
+
+<head>
+    @*<meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Card</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />*@
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+    <style>
+        .w3-image{
+              opacity: 0.9;
+        }
+   body {
+           background: linear-gradient(to bottom, #666699 0%, #ffffff 100%);
+       /*background:url(/Images/haa9.jpg) fixed;*/
+  height: 0%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+    </style>
+</head>
+
+<body class="w3-content">
+    <header class="w3-container w3-center w3-padding-48 w3-white">
+        <h1 class="w3-xxxlarge"><b>TeofMa BLOG</b></h1>
+        <h6>Welcome to the blog of <span class="w3-tag">TeofMa world</span></h6>
+    </header>
+
+    <!-- Image header -->
+    <header class="w3-display-container w3-wide" id="home">
+        <img class="w3-image" src="/Images/pl.jpg" alt="Fashion Blog" width="1600" height="1060">
+        <div class="w3-display-left w3-padding-large">
+            <h1 class="w3-text-white">TeofMa</h1>
+            <h1 class="w3-jumbo w3-text-white w3-hide-small"><b>HOUSE PROPERTY BLOG</b></h1>
+            <h6><button class="w3-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off" onclick="u()">Home</button>
+                <button class="w3-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off" onclick="u1()">Log In</button>
+                <button class="w3-button w3-white w3-padding-large w3-large w3-opacity w3-hover-opacity-off" onclick="u2()">Sign Up</button></h6> 
+        </div>
+    </header>
+ 
+    @*<nav class="w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-collapse w3-top w3-center" style="z-index:1;width:300px;font-weight:bold" id="mySidebar">
+            <br>
+            <h3 id="ui" class="w3-padding-64 w3-center"><span class="w3-padding w3-black w3-opacity-min"><b>ToM</b></span> <span class="w3-hide-small w3-text-light-grey">TeofMa</span></h3>
+            <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hide-large">CLOSE</a>
+            <a href="#" onclick="jw()" class="w3-bar-item w3-button">Home</a>
+            <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT ME</a>
+            <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+        </nav>
+
+        <!-- Top menu on small screens -->
+        <header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
+            <span class="w3-left w3-padding">SOME NAME</span>
+            <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()">☰</a>
+        </header>
+
+        <!-- Overlay effect when opening sidebar on small screens -->
+        <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>*@
+
+
+    @*<!-- !PAGE CONTENT! -->
+        <div class="w3-main" style="margin-left:300px">
+
+            <!-- Push down content on small screens -->
+            <div class="w3-hide-large" style="margin-top:83px"></div>
+
+            <!-- Photo grid -->
+            <div class="w3-row">
+                <div class="w3-third">
+                    <img src="/Images/gg.jpg" style="width:100%" onclick="onClick(this)" alt="A boy surrounded by beautiful nature">
+                    <img src="/Images/t3.jpg" style="width:100%" onclick="onClick(this)" alt="What a beautiful scenery this sunset">
+                    <img src="/Images/t4.jpg" style="width:100%" onclick="onClick(this)" alt="The Beach. Me. Alone. Beautiful">
+                </div>
+
+                <div class="w3-third">
+                    <img src="/Images/t4.jpg" style="width:100%" onclick="onClick(this)" alt="Quiet day at the beach. Cold, but beautiful">
+                    <img src="/Images/t4.jpg" style="width:100%" onclick="onClick(this)" alt="Waiting for the bus in the desert">
+                    <img src="/Images/t4.jpg" style="width:100%" onclick="onClick(this)" alt="Nature again.. At its finest!">
+                </div>
+
+                <div class="w3-third">
+                    <img src="/Images/t4.jpg" style="width:100%" onclick="onClick(this)" alt="Canoeing again">
+                    <img src="/Images/t4.jpg" style="width:100%" onclick="onClick(this)" alt="A girl, and a train passing">
+                    <img src="/Images/t4.jpg" style="width:100%" onclick="onClick(this)" alt="What a beautiful day!">
+                </div>
+            </div>
+
+
+            <!-- End page content -->
+        </div>*@
+</body>
+
+</html>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    function myFunction() {
+        var x = document.getElementById("myinput");
+        if (x.type == "password") {
+            x.type = "text";
+        }
+        else {
+            x.type = "password"
+        }
+    }
+
+    function sbt() {
+        debugger
+        var Name = $("#txtname").val();
+        var Password = $("#myinput").val();
+
+        $.ajax({
+            url: "/fLogin/Verify",
+            data: { UserName: Name, Password: Password },
+            type: "POST",
+
+            success: function (data) {
+                if (data.success == true) {
+                    debugger
+                    var UserName = data.data[0].UserName;
+                    var Address = data.data[0].Address;
+                    var Email = data.data[0].Email;
+
+                    $.ajax({
+                        url: "/fLogin/setSession",
+                        data: { UserName: UserName, Address: Address, Email: Email},
+                        type: "POST",
+                        success: function (data) {
+                            if (data == "Login Success") {
+                                window.location.href = "/fHome/HomeIndex";
+                                alert('Login Successfully');
+                            }
+
+                        }
+                    });
+                }
+                else {
+                    alert('Your Username and Password is Incorrect');
+                }
+
+            },
+            //error: function (xhr) {
+            //    alert('error');
+            //}
+
+        });
+    }
+    function u() {
+        window.location.href = "/fHome/HomeIndex"
+    }
+    function u1() {
+        window.location.href = "/fLogin/Login"
+    }
+    function u2() {
+        window.location.href = "/fUser/UserData"
+    }
+
+
+
+</script>
+
